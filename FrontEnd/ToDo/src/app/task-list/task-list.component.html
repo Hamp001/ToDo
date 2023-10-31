@@ -1,0 +1,31 @@
+<div class="searchAdd">
+    <button class="button-77" id="searchTask" (click)="toggleSearchField()">Search task</button>
+    <button class="button-77" id="addTask" (click)="toggleAddField()">Add task</button><br><br>        
+</div>
+<article id="actions">
+    <div *ngIf="showInputSearchField">
+        <p>Task name:</p>
+        <input id="taskName" #taskName>
+        <button class="secundaryBtn" id="search" (click)="searchTask(taskName.value)">Search</button><br><br>
+        <div id="messageSearch"*ngIf="messageSearch[0]==true" class="message">{{messageSearch[1]}}</div>
+    </div>
+
+    <div *ngIf="showInputAddField">
+        <p>New Task:</p> 
+        <input [(ngModel)]="newTaskInput" id="newTask" #newTask><br><br>
+        <p>Task description:</p> 
+        <input [(ngModel)]="taskDescriptionInput" id="taskDescription" #taskDescription><br><br>
+        <p>To date:</p>
+        <input [(ngModel)]="toDateInput" type="date" id="toDate"  #toDate><br><br>
+        <button class="secundaryBtn" id="add" (click)="addTask(newTask.value,taskDescription.value,toDate.value)">Add</button><br><br>
+        <div id="messageAdd"*ngIf="messageAdd[0]==true" class="message">{{messageAdd[1]}}</div>
+    </div>
+</article>
+
+<article *ngFor="let task of results" class="articleList">
+    <p>Task: {{task.name}}</p>
+    <p>description: {{task.description}}</p>
+    <p>To date: {{task.taskDate}}</p>
+</article>
+
+
